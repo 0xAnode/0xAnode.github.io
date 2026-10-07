@@ -3,11 +3,962 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Mon Site Personnel</title>
-    <link href="styles.css" rel="stylesheet">
+    <title>Portfolio | Cybersécurité</title>
+    <link rel="icon" type="image/jpeg" href="logo_anode_web.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --border-color: #000000;
+            --hover-bg: #000000;
+            --hover-text: #ffffff;
+            --menu-width: 220px;
+
+            --cursor-default: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' shape-rendering='crispEdges'><path fill='%23ffffff' d='M1,0 L1,18 L2,18 L2,19 L3,19 L3,20 L4,20 L4,21 L5,21 L5,22 L6,22 L6,21 L7,21 L7,20 L8,20 L8,19 L9,19 L9,18 L10,18 L10,17 L11,17 L11,16 L12,16 L12,15 L13,15 L13,14 L14,14 L14,13 L13,13 L13,12 L12,12 L12,11 L11,11 L11,10 L10,10 L10,9 L9,9 L9,8 L8,8 L8,7 L7,7 L7,6 L6,6 L6,5 L5,5 L5,4 L4,4 L4,3 L3,3 L3,2 L2,2 L2,1 L1,1 Z'/><path fill='%23000000' d='M2,1 L2,17 L3,17 L3,18 L4,18 L4,19 L5,19 L5,20 L6,20 L6,19 L7,19 L7,18 L8,18 L8,17 L9,17 L9,16 L10,16 L10,15 L11,15 L11,14 L12,14 L12,13 L12,12 L11,12 L11,11 L10,11 L10,10 L9,10 L9,9 L8,9 L8,8 L7,8 L7,7 L6,7 L6,6 L5,6 L5,5 L4,5 L4,4 L3,4 L3,3 L2,3 Z'/></svg>") 1 0, auto;
+
+            --cursor-pointer: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' shape-rendering='crispEdges'><path fill='%23ffffff' d='M8,0 L8,4 L9,4 L9,0 L10,0 L10,4 L11,4 L11,0 L12,0 L12,4 L13,4 L13,0 L14,0 L14,4 L15,4 L15,0 L16,0 L16,4 L16,5 L17,5 L17,6 L18,6 L18,7 L18,8 L19,8 L19,9 L19,10 L19,11 L19,12 L19,13 L19,14 L19,15 L19,16 L18,16 L18,17 L17,17 L17,18 L16,18 L16,19 L15,19 L15,20 L14,20 L14,21 L13,21 L13,22 L12,22 L12,21 L11,21 L11,20 L10,20 L10,19 L9,19 L9,18 L8,18 L8,17 L7,17 L7,16 L6,16 L6,15 L6,14 L6,13 L6,12 L6,11 L6,10 L6,9 L6,8 L6,7 L6,6 L6,5 L6,4 L7,4 L7,5 L8,5 L8,4 Z'/><path fill='%23000000' d='M9,1 L9,4 L10,4 L10,1 L11,1 L11,4 L12,4 L12,1 L13,1 L13,4 L14,4 L14,1 L15,1 L15,4 L15,5 L16,5 L16,6 L17,6 L17,7 L17,8 L18,8 L18,9 L18,10 L18,11 L18,12 L18,13 L18,14 L18,15 L17,15 L17,16 L16,16 L16,17 L15,17 L15,18 L14,18 L14,19 L13,19 L13,20 L12,20 L12,19 L11,19 L11,18 L10,18 L10,17 L9,17 L9,16 L8,16 L8,15 L7,15 L7,14 L7,13 L7,12 L7,11 L7,10 L7,9 L7,8 L7,7 L7,6 L7,5 L8,5 L8,4 L9,4 Z'/></svg>") 9 0, pointer;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            cursor: var(--cursor-default) !important;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Space Mono', monospace;
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
+            background-size: 20px 20px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        ::selection { background: var(--text-color); color: var(--bg-color); }
+
+        /* ============ KEYFRAMES ============ */
+        @keyframes blink { 0%,50% { opacity:1; } 51%,100% { opacity:0; } }
+        @keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.3; transform:scale(0.75); } }
+        @keyframes equalize { 0%,100% { height:20%; } 50% { height:100%; } }
+
+        /* ============ SIDEBAR ============ */
+        .sidebar {
+            position: fixed;
+            top: 0; left: 0;
+            width: var(--menu-width);
+            height: 100vh;
+            background: var(--bg-color);
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-right: 4px solid var(--border-color);
+            z-index: 100;
+        }
+
+        .sidebar-nav { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+
+        .sidebar-nav a {
+            display: block;
+            padding: 0.5rem 0.7rem;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid transparent;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.15s ease-in-out;
+            cursor: var(--cursor-pointer) !important;
+        }
+
+        .sidebar-nav a::before {
+            content: "> ";
+            opacity: 0;
+            margin-right: 0.3rem;
+            transition: opacity 0.15s ease-in-out;
+        }
+
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            background: var(--text-color);
+            color: var(--bg-color);
+            border-color: var(--border-color);
+        }
+
+        .sidebar-nav a:hover { transform: translateX(4px); }
+        .sidebar-nav a:hover::before,
+        .sidebar-nav a.active::before { opacity: 1; }
+
+        /* ============ LAYOUT ============ */
+        .main-content {
+            margin-left: var(--menu-width);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+        }
+
+        .content-wrapper {
+            max-width: 900px;
+            width: 100%;
+            padding: 0 2rem 0 3rem;
+        }
+
+        /* ============ HERO ============ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem 0;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .hero-header { display: flex; align-items: center; gap: 2rem; margin-bottom: 1.5rem; }
+
+        .hero-avatar {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            flex-shrink: 0;
+            border: 3px solid var(--border-color);
+            background: var(--bg-color);
+            padding: 6px;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .hero-avatar::before,
+        .hero-avatar::after {
+            content: "";
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: var(--text-color);
+        }
+
+        .hero-avatar::before { top: -3px; left: -3px; }
+        .hero-avatar::after { bottom: -3px; right: -3px; }
+
+        .hero-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            image-rendering: pixelated;
+        }
+
+        .hero-avatar:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 6px 6px 0 0 var(--border-color);
+        }
+
+        .hero-text { flex-grow: 1; min-width: 0; }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            line-height: 1;
+            margin-bottom: 0.4rem;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(0.85rem, 1.4vw, 1.1rem);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.85;
+        }
+
+        .hero-divider {
+            height: 2px;
+            background: repeating-linear-gradient(90deg,
+                var(--border-color) 0, var(--border-color) 6px,
+                transparent 6px, transparent 12px);
+            margin: 1.5rem 0;
+            opacity: 0.5;
+        }
+
+        .hero-description {
+            font-size: 1rem;
+            max-width: 650px;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-description .highlight {
+            background: var(--text-color);
+            color: var(--bg-color);
+            padding: 0 0.4rem;
+        }
+
+        .hero-links { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+
+        .hero-links a,
+        .btn {
+            color: var(--text-color);
+            text-decoration: none;
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            font-family: 'Space Mono', monospace;
+            display: inline-block;
+            background: transparent;
+            transition: all 0.15s ease-in-out;
+            cursor: var(--cursor-pointer) !important;
+        }
+
+        .btn { padding: 0.4rem 0.8rem; }
+
+        .hero-links a:hover,
+        .btn:hover {
+            background: var(--hover-bg);
+            color: var(--hover-text);
+            transform: translate(-2px, -2px);
+            box-shadow: 3px 3px 0 0 var(--border-color);
+        }
+
+        .hero-links a:active { transform: translate(0,0); box-shadow: none; }
+
+        /* ============ SECTIONS ============ */
+        section:not(.hero) { padding: 10rem 0; position: relative; }
+
+        section:not(.hero)::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: repeating-linear-gradient(90deg,
+                var(--border-color) 0, var(--border-color) 4px,
+                transparent 4px, transparent 12px);
+            opacity: 0.15;
+        }
+
+        #about::before { display: none; }
+
+        h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-left: 4px solid var(--border-color);
+            padding-left: 0.8rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        h2::after {
+            content: "";
+            display: block;
+            height: 1px;
+            background: repeating-linear-gradient(90deg,
+                var(--border-color) 0, var(--border-color) 4px,
+                transparent 4px, transparent 8px);
+            margin-top: 0.6rem;
+            opacity: 0.4;
+        }
+
+        p { margin-bottom: 1rem; font-size: 0.95rem; }
+
+        /* ============ TAGS ============ */
+        .tag {
+            border: 1px dashed var(--border-color);
+            font-size: 0.75rem;
+            padding: 0.1rem 0.4rem;
+            transition: all 0.15s ease-in-out;
+        }
+
+        .tag:hover {
+            background: var(--text-color);
+            color: var(--bg-color);
+            border-style: solid;
+        }
+
+        /* ============ SKILLS ============ */
+        .skills-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.8rem;
+        }
+
+        .skills-list li {
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 0.8rem;
+            font-size: 0.85rem;
+            transition: all 0.15s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skills-list li::before {
+            content: "> ";
+            font-weight: 700;
+            animation: blink 1.2s steps(2, start) infinite;
+        }
+
+        .skills-list li:hover {
+            background: var(--text-color);
+            color: var(--bg-color);
+            transform: translateX(4px);
+        }
+
+        .skills-list li:hover::before { color: var(--bg-color); }
+
+        /* ============ ABOUT ============ */
+        .about-editorial { max-width: 680px; }
+
+        .about-intro {
+            font-size: 1.25rem;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .about-intro .highlight {
+            background: var(--text-color);
+            color: var(--bg-color);
+            padding: 0.05rem 0.4rem;
+            display: inline-block;
+            transform: skew(-2deg);
+            transition: transform 0.3s ease;
+        }
+
+        .about-intro .highlight:hover { transform: skew(0deg); }
+
+        .about-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+            margin-bottom: 2.5rem;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.5rem 0;
+        }
+
+        .about-row {
+            display: flex;
+            align-items: baseline;
+            gap: 0.8rem;
+            font-size: 0.9rem;
+            position: relative;
+            transition: padding-left 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .about-row::before {
+            content: "›";
+            position: absolute;
+            left: 0;
+            opacity: 0;
+            transform: translateX(-8px);
+            font-weight: 700;
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .about-row:hover { padding-left: 1.2rem; }
+        .about-row:hover::before { opacity: 1; transform: translateX(0); }
+
+        .about-key {
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.72rem;
+            letter-spacing: 1.5px;
+            flex-shrink: 0;
+            min-width: 110px;
+        }
+
+        .about-dots {
+            flex: 1;
+            border-bottom: 1px dotted var(--border-color);
+            opacity: 0.4;
+            margin-bottom: 4px;
+            transition: opacity 0.3s ease;
+        }
+
+        .about-row:hover .about-dots { opacity: 0.9; }
+
+        .about-val {
+            flex-shrink: 0;
+            font-size: 0.9rem;
+            transition: letter-spacing 0.3s ease;
+        }
+
+        .about-row:hover .about-val { letter-spacing: 0.5px; }
+
+        .about-outro {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            opacity: 0.65;
+            max-width: 520px;
+            font-style: italic;
+        }
+
+        /* ============ HTB SHOWCASE ============ */
+        .htb-showcase {
+            border: 2px solid var(--border-color);
+            padding: 2rem;
+            position: relative;
+            background: var(--bg-color);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .htb-showcase::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(45deg,
+                transparent, transparent 12px,
+                rgba(0,0,0,0.015) 12px, rgba(0,0,0,0.015) 13px);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .htb-showcase:hover { transform: translate(-3px,-3px); box-shadow: 6px 6px 0 0 var(--border-color); }
+        .htb-showcase:hover::before { opacity: 1; }
+
+        .htb-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 1px dashed var(--border-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .htb-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.15rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .htb-bracket { opacity: 0.35; transition: opacity 0.3s ease, transform 0.3s ease; }
+        .htb-cube { display: inline-block; transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
+
+        .htb-showcase:hover .htb-bracket:first-child { opacity: 1; transform: translateX(-3px); }
+        .htb-showcase:hover .htb-bracket:last-child { opacity: 1; transform: translateX(3px); }
+        .htb-showcase:hover .htb-cube { transform: rotate(90deg); }
+
+        .htb-title-block { flex-grow: 1; min-width: 0; }
+
+        .htb-title-block h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.15rem;
+        }
+
+        .htb-subtitle { font-size: 0.72rem; opacity: 0.55; letter-spacing: 1px; margin: 0; }
+
+        .htb-status {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid var(--border-color);
+            padding: 0.25rem 0.55rem;
+            flex-shrink: 0;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--text-color);
+            animation: pulse 1.8s ease-in-out infinite;
+        }
+
+        .htb-description {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            max-width: 640px;
+        }
+
+        .htb-description .highlight {
+            background: var(--text-color);
+            color: var(--bg-color);
+            padding: 0 0.35rem;
+            display: inline-block;
+            transition: all 0.2s ease;
+        }
+
+        .htb-description .highlight:hover {
+            background: transparent;
+            color: var(--text-color);
+            outline: 1px solid var(--text-color);
+        }
+
+        .htb-modules {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .htb-module {
+            border: 1px solid var(--border-color);
+            padding: 1.1rem 1.2rem;
+            position: relative;
+            background: var(--bg-color);
+            overflow: hidden;
+            transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .htb-module::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--text-color);
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.3s ease;
+        }
+
+        .htb-module:hover { transform: translate(-3px,-3px); box-shadow: 5px 5px 0 0 var(--border-color); }
+        .htb-module:hover::before { transform: scaleY(1); }
+
+        .module-head { display: flex; align-items: baseline; gap: 0.6rem; margin-bottom: 0.7rem; }
+
+        .module-num {
+            font-size: 0.7rem;
+            font-weight: 700;
+            opacity: 0.4;
+            letter-spacing: 1px;
+            transition: opacity 0.25s ease;
+        }
+
+        .htb-module:hover .module-num { opacity: 1; }
+
+        .module-name {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: letter-spacing 0.3s ease;
+        }
+
+        .htb-module:hover .module-name { letter-spacing: 2.5px; }
+
+        .module-desc { font-size: 0.82rem; line-height: 1.7; opacity: 0.8; margin-bottom: 0.9rem; }
+
+        .module-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+
+        .htb-footer {
+            display: flex;
+            justify-content: flex-end;
+            padding-top: 1.2rem;
+            border-top: 1px dashed var(--border-color);
+        }
+
+        /* ============ FOOTER ============ */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 1.5rem 0;
+            font-size: 0.8rem;
+            text-align: center;
+            opacity: 0.7;
+            margin-top: 5rem;
+        }
+
+        footer p::before { content: "// "; opacity: 0.5; }
+
+        /* ============ MUSIC PLAYER ============ */
+        .music-player {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--bg-color);
+            border: 2px solid var(--border-color);
+            padding: 0.7rem 0.6rem;
+            user-select: none;
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+            transition: opacity 0.4s ease, transform 0.4s ease, box-shadow 0.15s ease;
+        }
+
+        .music-player.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .music-player.visible:hover {
+            transform: translate(-2px,-2px);
+            box-shadow: 4px 4px 0 0 var(--border-color);
+        }
+
+        .music-equalizer {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 3px;
+            height: 36px;
+            padding: 0 0.2rem;
+        }
+
+        .music-equalizer span {
+            display: block;
+            width: 3px;
+            background: var(--text-color);
+            height: 100%;
+            transform-origin: bottom;
+            animation: equalize 0.8s ease-in-out infinite;
+        }
+
+        .music-equalizer span:nth-child(1) { animation-delay: 0s; }
+        .music-equalizer span:nth-child(2) { animation-delay: 0.15s; }
+        .music-equalizer span:nth-child(3) { animation-delay: 0.3s; }
+        .music-equalizer span:nth-child(4) { animation-delay: 0.45s; }
+
+        .music-player.paused .music-equalizer span {
+            animation-play-state: paused;
+            height: 20%;
+        }
+
+        .music-toggle {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            width: 26px;
+            height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--text-color);
+            padding: 0;
+            line-height: 1;
+            transition: all 0.15s ease-in-out;
+            cursor: var(--cursor-pointer) !important;
+        }
+
+        .music-toggle:hover { background: var(--text-color); color: var(--bg-color); }
+
+        /* ============ SCROLLBAR ============ */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg-color); border-left: 1px solid var(--border-color); }
+        ::-webkit-scrollbar-thumb { background: var(--text-color); border: 2px solid var(--bg-color); }
+        ::-webkit-scrollbar-thumb:hover { background: #333; }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 768px) {
+            :root { --menu-width: 100%; }
+
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                border-right: none;
+                border-bottom: 4px solid var(--border-color);
+                padding: 1rem;
+                justify-content: flex-start;
+            }
+
+            .sidebar-nav { flex-direction: row; flex-wrap: wrap; gap: 0.3rem; }
+            .sidebar-nav a { font-size: 0.7rem; padding: 0.3rem 0.5rem; }
+
+            .main-content { margin-left: 0; }
+            .content-wrapper { padding: 0 1rem; }
+
+            .hero {
+                min-height: calc(100vh - 80px);
+                padding: 2rem 0;
+            }
+
+            .hero-header { flex-direction: column; align-items: flex-start; gap: 1.2rem; }
+            .hero-avatar { width: 110px; height: 110px; }
+            .hero-title { letter-spacing: 3px; }
+
+            section:not(.hero) { padding: 6rem 0; }
+
+            .about-intro { font-size: 1.05rem; margin-bottom: 1.8rem; }
+            .about-details { padding: 1.2rem 0; gap: 0.7rem; }
+            .about-key { min-width: 90px; font-size: 0.65rem; }
+            .about-val { font-size: 0.82rem; }
+
+            .htb-showcase { padding: 1.4rem; }
+            .htb-header { flex-wrap: wrap; gap: 0.7rem; }
+            .htb-status { font-size: 0.62rem; padding: 0.2rem 0.45rem; }
+            .htb-modules { grid-template-columns: 1fr; }
+            .htb-description { font-size: 0.88rem; }
+
+            .music-player { bottom: 1rem; right: 1rem; padding: 0.5rem; }
+        }
+    </style>
 </head>
 <body>
-    <h1 class="space-mono-regular">Bienvenue sur mon site personnel !</h1>
-    <p class="space-mono-regular">Ce site est hébergé sur GitHub Pages.</p>
+
+    <aside class="sidebar">
+        <ul class="sidebar-nav">
+            <li><a href="#hero" class="active">00. Profil</a></li>
+            <li><a href="#about">01. À propos</a></li>
+            <li><a href="#projects">02. Projets</a></li>
+            <li><a href="#skills">03. Aptitudes</a></li>
+            <li><a href="#contact">04. Contact</a></li>
+        </ul>
+    </aside>
+
+    <div class="main-content">
+        <div class="content-wrapper">
+
+            <section class="hero" id="hero">
+                <div class="hero-header">
+                    <div class="hero-avatar">
+                        <img src="black_anode-removebg.png" alt="Avatar Anode">
+                    </div>
+                    <div class="hero-text">
+                        <h1 class="hero-title">Anode</h1>
+                        <p class="hero-subtitle">// Étudiant en Cybersécurité</p>
+                    </div>
+                </div>
+
+                <div class="hero-divider"></div>
+
+                <p class="hero-description">
+                    <span class="highlight">Sécurité Offensive</span> ·
+                    <span class="highlight">Linux</span> ·
+                    <span class="highlight">Réseau</span> ·
+                    <span class="highlight">Recherche de stage</span>
+                </p>
+
+                <div class="hero-links">
+                    <a href="https://github.com/0xAnode" target="_blank">[GitHub]</a>
+                    <a href="https://profile.hackthebox.com/profile/019cadf3-bf4c-7226-8018-b3129cada025?utm_medium=copy_url" target="_blank">[HackTheBox]</a>
+                    <a href="#contact">[Contact]</a>
+                </div>
+            </section>
+
+            <main>
+                <section id="about">
+                    <h2>01. À propos</h2>
+                    <div class="about-editorial">
+                        <p class="about-intro">
+                            Passionné par la <span class="highlight">cybersécurité</span>, le pentest et le réseau.
+                        </p>
+
+                        <div class="about-details">
+                            <div class="about-row">
+                                <span class="about-key">Formation</span>
+                                <span class="about-dots"></span>
+                                <span class="about-val">Cybersécurité</span>
+                            </div>
+                            <div class="about-row">
+                                <span class="about-key">Focus</span>
+                                <span class="about-dots"></span>
+                                <span class="about-val">Red Team / Pentest</span>
+                            </div>
+                            <div class="about-row">
+                                <span class="about-key">Disponibilité</span>
+                                <span class="about-dots"></span>
+                                <span class="about-val">Février 2026 — Stage 6 mois</span>
+                            </div>
+                        </div>
+
+                        <p class="about-outro">
+                            J'ai comme ambition de terminer mon bachelier en sécurité des systèmes
+                            et d'entamer mon master en cybersécurité.
+                        </p>
+                    </div>
+                </section>
+
+                <section id="projects">
+                    <h2>02. Projets & Lab</h2>
+
+                    <div class="htb-showcase">
+                        <div class="htb-header">
+                            <div class="htb-logo">
+                                <span class="htb-bracket">[</span>
+                                <span class="htb-cube">▣</span>
+                                <span class="htb-bracket">]</span>
+                            </div>
+                            <div class="htb-title-block">
+                                <h3>Hack The Box</h3>
+                                <p class="htb-subtitle">// Plateforme d'entraînement offensif</p>
+                            </div>
+                            <div class="htb-status">
+                                <span class="status-dot"></span>
+                                <span>en cours</span>
+                            </div>
+                        </div>
+
+                        <p class="htb-description">
+                            Entraînement quotidien sur <span class="highlight">Hack The Box</span> :
+                            machines, challenges et parcours Academy pour progresser en
+                            <span class="highlight">pentest</span>, exploitation et post-exploitation.
+                        </p>
+
+                        <div class="htb-modules">
+                            <div class="htb-module">
+                                <div class="module-head">
+                                    <span class="module-num">01</span>
+                                    <span class="module-name">Academy</span>
+                                </div>
+                                <p class="module-desc">
+                                    Parcours structurés : fondamentaux réseau, web exploitation,
+                                    Active Directory, privilege escalation.
+                                </p>
+                                <div class="module-tags">
+                                    <span class="tag">CPTS path</span>
+                                    <span class="tag">Web</span>
+                                    <span class="tag">AD</span>
+                                </div>
+                            </div>
+
+                            <div class="htb-module">
+                                <div class="module-head">
+                                    <span class="module-num">02</span>
+                                    <span class="module-name">Labs</span>
+                                </div>
+                                <p class="module-desc">
+                                    Machines rétro-ingénierie et challenges pour appliquer
+                                    les techniques en conditions réelles.
+                                </p>
+                                <div class="module-tags">
+                                    <span class="tag">Linux</span>
+                                    <span class="tag">Windows</span>
+                                    <span class="tag">CTF</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="htb-footer">
+                            <a href="https://profile.hackthebox.com/profile/019cadf3-bf4c-7226-8018-b3129cada025?utm_medium=copy_url"
+                               target="_blank"
+                               class="btn">
+                                Voir mon profil HTB -&gt;
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="skills">
+                    <h2>03. Aptitudes</h2>
+                    <ul class="skills-list">
+                        <li>Linux / Kali Linux</li>
+                        <li>Nmap / Burp Suite</li>
+                        <li>Active Directory</li>
+                        <li>Python & Bash</li>
+                        <li>Metasploit Framework</li>
+                        <li>OWASP Top 10</li>
+                    </ul>
+                </section>
+
+                <section id="contact">
+                    <h2>04. Contact</h2>
+                    <p>Pour toute opportunité professionnelle ou échange technique :</p>
+                    <p><strong>Email :</strong> 0xAnode@proton.me</p>
+                </section>
+            </main>
+
+            <footer>
+                <p>© 2026 Anode</p>
+            </footer>
+
+        </div>
+    </div>
+
+    <div class="music-player paused" id="musicPlayer">
+        <div class="music-equalizer">
+            <span></span><span></span><span></span><span></span>
+        </div>
+        <button class="music-toggle" id="musicToggle" aria-label="Play/Pause">▶</button>
+    </div>
+
+    <audio id="bgMusic" src="addiction.mp3" loop preload="auto"></audio>
+
+    <script>
+        // ============ SCROLL SPY ============
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.sidebar-nav a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                if (window.scrollY >= section.offsetTop - window.innerHeight / 3) {
+                    current = section.id;
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+            });
+        });
+
+        // ============ MUSIQUE ============
+        const music = document.getElementById('bgMusic');
+        const player = document.getElementById('musicPlayer');
+        const toggleBtn = document.getElementById('musicToggle');
+
+        music.volume = 0.05;
+
+        let musicStarted = false;
+
+        function startMusicOnce() {
+            if (musicStarted) return;
+            musicStarted = true;
+
+            music.play().then(() => {
+                player.classList.add('visible');
+                player.classList.remove('paused');
+                toggleBtn.textContent = '❚❚';
+            }).catch(err => {
+                console.warn('Lecture audio bloquée :', err);
+                musicStarted = false;
+            });
+
+            document.removeEventListener('click', startMusicOnce);
+            document.removeEventListener('keydown', startMusicOnce);
+            document.removeEventListener('touchstart', startMusicOnce);
+        }
+
+        document.addEventListener('click', startMusicOnce);
+        document.addEventListener('keydown', startMusicOnce);
+        document.addEventListener('touchstart', startMusicOnce);
+
+        toggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (music.paused) {
+                music.play();
+                player.classList.remove('paused');
+                toggleBtn.textContent = '❚❚';
+            } else {
+                music.pause();
+                player.classList.add('paused');
+                toggleBtn.textContent = '▶';
+            }
+        });
+    </script>
+
 </body>
 </html>
